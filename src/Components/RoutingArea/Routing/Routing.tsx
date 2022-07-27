@@ -29,7 +29,7 @@ function Routing(): JSX.Element {
           <Route path="/tasks" element={<TodoList />} />
           <Route path="/tasks/add" element={<AddTodo />} />
           <Route path="/tasks/update/:id" element={<EditTodo />} />
-          <Route path="/tasks/delete/:id/" element={<DeleteTodo />} />
+          {/* <Route path="/tasks/delete/:id/" element={<DeleteTodo />} /> */}
           <Route path="login" element={<Login />} />
           <Route path="register" element={<Register />} />
           <Route path="logout" element={<Logout />} />

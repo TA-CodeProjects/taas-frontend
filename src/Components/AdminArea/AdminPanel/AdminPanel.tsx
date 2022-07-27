@@ -1,20 +1,10 @@
-import { useEffect } from "react";
 import { Button } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import store from "../../../Redux/Store";
-import notify, { ErrMsg } from "../../../Services/Notification";
+import {useToken}  from "../../../Services/LoginHook";
 import "./AdminPanel.css";
 
 function AdminPanel(): JSX.Element {
-    const navigate = useNavigate();
-
-     useEffect(() => {
-       // If we don't have a user object - we are not logged in
-       if (!store.getState().authReducer.user.token) {
-         notify.error(ErrMsg.PLS_LOGIN);
-         navigate("/login");
-       }
-     }, []);
+    useToken();
 
 
     return (
