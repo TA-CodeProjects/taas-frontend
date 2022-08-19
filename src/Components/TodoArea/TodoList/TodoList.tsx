@@ -10,12 +10,14 @@ import web from "../../../Services/WebApi";
 import TodoItem from "../TodoItem/TodoItem";
 import { useToken } from "../../../Services/LoginHook";
 import "./TodoList.css";
+import AddTodo from "../AddTodo/AddTodo";
 
 function TodoList(): JSX.Element {
   
   const [tasks, setTasks] = useState<TodoModel[]>(
     store.getState().tasksReducer.tasks
   );
+  
 
    useToken();
 
@@ -44,22 +46,17 @@ function TodoList(): JSX.Element {
         <h2 className="text-center" mb-4>
           Todo List
         </h2>
-        <div className="text-center my-4">
-          <Link to="add">
-            <FaPlus size={56} />
-          </Link>
+        <div className="my-4">
+          <AddTodo setTasks={setTasks}/>
         </div>
-        <Row xs={1} md={3} lg={4} className="gap-4">
-          {tasks.length > 0
-            ? tasks.map((task) => (
-                <TodoItem
-                  key={task.id}
-                  task={task}
-                  setTasks={setTasks}
-                />
-              ))
-            : "No tasks found"}
-        </Row>
+
+        {tasks.length > 0
+          ? tasks.map((task) => (
+              <Row className="bg-primary  text-white rounded m-2 p-2 d-flex">
+                <TodoItem key={task.id} task={task} setTasks={setTasks} />
+              </Row>
+            ))
+          : "No tasks found"}
       </Container>
     </div>
   );
