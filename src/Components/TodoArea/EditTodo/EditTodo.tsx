@@ -44,6 +44,7 @@ function EditTodo(props: EditTodoProps): JSX.Element {
        register,
        handleSubmit,
        control,
+       reset,
        formState: { errors, isDirty, isValid },
      } = useForm<TodoModel>({
        defaultValues: defaultValuesObj,
@@ -59,6 +60,7 @@ function EditTodo(props: EditTodoProps): JSX.Element {
            notify.success(SccMsg.UPDATE_TASK);
            store.dispatch(taskUpdatedAction(res.data));
            props.handleClose();
+           return reset(res.data);
          })
          .catch((err) => {
            notify.error("Oppsy : " + err.message);
@@ -114,6 +116,10 @@ function EditTodo(props: EditTodoProps): JSX.Element {
               />
               <span className="text-danger">{errors.dueDate?.message}</span>
             </Form.Group>
+            <Form.Group className="mb-3">
+              <Form.Label>Done</Form.Label>
+              <Form.Check {...register("done")} type="checkbox" />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicButton">
               <Button
                 disabled={!isValid || !isDirty}
@@ -122,7 +128,11 @@ function EditTodo(props: EditTodoProps): JSX.Element {
               >
                 Update
               </Button>
-              <Button className="float-end" variant="secondary" onClick={props.handleClose}>
+              <Button
+                className="float-end"
+                variant="secondary"
+                onClick={props.handleClose}
+              >
                 Close
               </Button>
             </Form.Group>

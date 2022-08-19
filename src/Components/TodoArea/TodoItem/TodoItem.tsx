@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Button, Card, Col } from "react-bootstrap";
+import { Badge, Button, Card, Col, FormGroup } from "react-bootstrap";
 import { TodoModel } from "../../../Models/TodoModel";
 import { MdDelete, MdModeEdit } from "react-icons/md";
 import "./TodoItem.css";
@@ -24,17 +24,27 @@ function TodoItem(props: TodoItemProps): JSX.Element {
 
   return (
     <>
+      <Col xs="1" className="align-self-center">
+        {props.task.done ? (
+          <Badge bg="success">Done</Badge>
+        ) : (
+          <Badge bg="dark">unDone</Badge>
+        )}
+      </Col>
+      <Col
+        xs="5"
+        className={props.task.done ? "text-decoration-line-through" : ""}
+      >
+        <h3>{props.task.caption}</h3>
+        <p>{props.task.info}</p>
+      </Col>
+      <Col xs="2" className="align-self-center">
+        <h3 className="text-center">{props.task.classification}</h3>
+      </Col>
       <Col xs="2" className="align-self-center">
         <h5 className="text-center">
           {moment(props.task.dueDate).format("DD/MM/yyyy")}
         </h5>
-      </Col>
-      <Col xs="5">
-        <h3>{props.task.caption}</h3>
-        <p>{props.task.info}</p>
-      </Col>
-      <Col xs="3" className="align-self-center">
-        <h3 className="text-center">{props.task.classification}</h3>
       </Col>
       <Col xs="2" className="align-self-center">
         <div className="d-flex">
@@ -61,9 +71,6 @@ function TodoItem(props: TodoItemProps): JSX.Element {
             />
           </div>
         </div>
-        {/* <Link to={`update/${props.task.id}`}>
-          <MdModeEdit size={42} />
-        </Link> */}
       </Col>
     </>
   );
