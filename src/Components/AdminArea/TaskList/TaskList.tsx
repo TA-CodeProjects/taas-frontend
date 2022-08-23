@@ -39,8 +39,8 @@ function TaskList(): JSX.Element {
               {tasks
                 .sort(
                   (a: any, b: any) =>
-                    new Date(a.dueDate).getDate() -
-                    new Date(b.dueDate).getDate()
+                    new Date(a.dueDate).getTime() -
+                    new Date(b.dueDate).getTime()
                 )
                 .sort((a: any, b: any) => a.done - b.done)
                 .map((task) => (

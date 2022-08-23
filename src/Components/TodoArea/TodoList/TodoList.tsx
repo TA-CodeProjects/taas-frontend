@@ -46,7 +46,11 @@ function TodoList(): JSX.Element {
 
         {tasks.length > 0
           ? tasks
-              .sort((a: any, b: any) => new Date(a.dueDate).getDate() - new Date(b.dueDate).getDate())
+              .sort(
+                (a: any, b: any) =>
+                  new Date(a.dueDate).getTime() -
+                  new Date(b.dueDate).getTime()
+              )
               .sort((a: any, b: any) => a.done - b.done)
               .map((task) => (
                 <Row className="bg-primary  text-white rounded m-2 p-2 d-flex">
