@@ -5,7 +5,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import "./Login.css";
 import { CredentialsModel, LoginModel } from "../../../Models/Welcome";
 import web from "../../../Services/WebApi";
-import notify from "../../../Services/Notification";
+import notify, { ErrMsg, SccMsg } from "../../../Services/Notification";
 import store from "../../../Redux/Store";
 import { loginAction } from "../../../Redux/UserAppState";
 import { Button, Form } from "react-bootstrap";
@@ -41,7 +41,7 @@ function Login(): JSX.Element {
       web
         .login(credentials)
         .then((res) => {
-          notify.success("login successfully");
+          notify.success(SccMsg.LOGIN_SUCCESS);
           store.dispatch(loginAction(res.data));
           if (res.data.email === "admin@admin.com") {
             navigate("/admin");
@@ -50,7 +50,7 @@ function Login(): JSX.Element {
           }
         })
         .catch((err) => {
-          notify.error(err.message);
+          notify.error(ErrMsg.LOGIN_FAILED);
         });
     };
 

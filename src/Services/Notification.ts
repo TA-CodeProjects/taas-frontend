@@ -14,6 +14,7 @@ export enum SccMsg {
 
 export enum ErrMsg {
   PLS_LOGIN = "please login",
+  LOGIN_FAILED = "Wrong credentials",
 }
 
 class Notify {
