@@ -14,6 +14,7 @@ function Logout(): JSX.Element {
         store.dispatch(logoutAction());
         store.dispatch(tasksClear());
         navigate("/login");
+        navigate(0);
       }
     });
     return (

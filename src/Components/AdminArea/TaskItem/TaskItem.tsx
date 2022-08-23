@@ -1,5 +1,5 @@
 import moment from "moment";
-import { Card, Col } from "react-bootstrap";
+import { Badge, Card, Col } from "react-bootstrap";
 import { TodoModel } from "../../../Models/TodoModel";
 import "./TaskItem.css";
 
@@ -10,19 +10,20 @@ import "./TaskItem.css";
 function TaskItem(props: TaskItemProps): JSX.Element {
    
     return (
-      <Col>
-        <Card>
-          <Card.Header className="text-center">
-            {props.task.caption}
-          </Card.Header>
-          <Card.Body>
-            <Card.Text>{props.task.classification}</Card.Text>
-            <Card.Text>
-              {moment(props.task.dueDate).format("DD/MM/yyyy")}
-            </Card.Text>
-          </Card.Body>
-        </Card>
-      </Col>
+      <tr>
+        <td>{props.task.id}</td>
+        <td>
+          {props.task.done ? (
+            <Badge bg="success">Done</Badge>
+          ) : (
+            <Badge bg="dark">unDone</Badge>
+          )}
+        </td>
+        <td>{props.task.classification}</td>
+        <td>{moment(props.task.dueDate).format("DD/MM/yyyy")}</td>
+        <td>{props.task.caption}</td>
+        <td>{props.task.info}</td>
+      </tr>
     );
 }
 

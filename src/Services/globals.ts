@@ -12,9 +12,9 @@ class DevelopmentGlobals extends Globals {
 
 class ProductionGlobals extends Globals {
   public urls = {
-    usersTasks: "http://localhost:8080/api/users/tasks/",
-    admin: "http://localhost:8080/api/admin/",
-    welcome: "http://localhost:8080/api/welcome/",
+    usersTasks: "https://taas-todo-app.herokuapp.com/api/users/tasks/",
+    admin: "https://taas-todo-app.herokuapp.com/api/admin/",
+    welcome: "https://taas-todo-app.herokuapp.com/api/welcome/",
   };
 }
 
